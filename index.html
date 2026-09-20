@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>DOM Tree Example</title>
+<style>
+  body { font-family: sans-serif; }
+  .highlight { background-color: yellow; font-weight: bold; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<h1>DOM Tree Example</h1>
+
+<div id="container">
+  <p>This is the first paragraph.</p>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li class="special">Item 3</li>
+  </ul>
+  <p id="target-paragraph">This paragraph will be modified.</p>
+</div>
+
+<button id="modifyButton">Modify DOM</button>
+<button id="highlightButton">Highlight Special Item</button>
+<button id="hideButton">Hide First Paragraph</button>
+
+<script>
+  // This script demonstrates basic DOM tree traversal and manipulation.
+
+  const modifyButton = document.getElementById('modifyButton');
+  const highlightButton = document.getElementById('highlightButton');
+  const hideButton = document.getElementById('hideButton');
+
+  // Event listener for the 'Modify DOM' button
+  modifyButton.addEventListener('click', () => {
+    // Find the element with id 'target-paragraph'
+    const targetParagraph = document.getElementById('target-paragraph');
+
+    // Create a new text node
+    const newNode = document.createTextNode(' - Modified by JavaScript!');
+
+    // Append the new node to the target paragraph
+    targetParagraph.appendChild(newNode);
+
+    // Add a class to the target paragraph
+    targetParagraph.classList.add('highlight');
+  });
+
+  // Event listener for the 'Highlight Special Item' button
+  highlightButton.addEventListener('click', () => {
+    // Find the list item with class 'special'
+    const specialItem = document.querySelector('li.special');
+
+    // Add the 'highlight' class to the special item
+    if (specialItem) {
+      specialItem.classList.add('highlight');
+    }
+  });
+
+  // Event listener for the 'Hide First Paragraph' button
+  hideButton.addEventListener('click', () => {
+    // Find the first paragraph element within the container
+    const firstParagraph = document.querySelector('#container p');
+
+    // Add the 'hidden' class to hide the paragraph
+    if (firstParagraph) {
+      firstParagraph.classList.add('hidden');
+    }
+  });
+
+  // Example of traversing the DOM tree:
+  // const containerDiv = document.getElementById('container');
+  // console.log('Children of container:', containerDiv.children);
+  // console.log('First child of container:', containerDiv.firstElementChild);
+  // console.log('Parent of list:', document.querySelector('ul').parentElement);
+
+</script>
+
+</body>
+</html>
